@@ -1,0 +1,55 @@
+<!DOCTYPE html5>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<div>
+		<h1>PREDICTING THE HEIGHT OF BSIT HEHE</h1>
+		<div id="apicontent"></div>	
+		<input type="number" placeholder="Enter your Age:" id="age" value = "21">
+		<input type="number" placeholder="Enter your Height" id="height" value = "149">
+		<select name="" id="sex">
+			<option value="0">Male</option>
+			<option value="1">Female</option>
+		</select>
+		<button id="btn">Predict</button>
+		<h1>Your weight based on model is</h1>
+	</div>	
+	<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(() => {
+		$("#btn").click(() => {
+			let age1 = $("#age")[0].value;
+			let sex1 = $("#sex")[0].value;
+			let height1 = $("#height")[0].value;
+			/*console.log(age);
+			console.log(sex);
+			console.log(height);*/
+			if(age1 == "" || sex1 == "" || height1 ==""){
+				alert('Input Incomplete');
+			}
+			else{
+				$("#apicontent")[0].innerHTML = "Loading Please Wait..."
+				$.ajax({
+				  url: "http://127.0.0.1:5500/API/predict",
+				  method: 'post',
+				  data : {age: age1, sex: sex1, height: height1},
+				  crossDomain: true, 
+				  headers: {
+				  	"Access-Control-Allow-Origin" : '*'
+				  }
+				}).done(res => {
+					let response = res.prediction.toFixed(2);
+				  	$("#apicontent")[0].innerHTML = response + '&nbsp;kg';
+				});
+			}
+		});
+		
+	});
+</script>
+</body>
+
+</html>

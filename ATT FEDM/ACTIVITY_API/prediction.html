@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+	<title>PREDICTION</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+	<div class="container">
+		<div class="my-5">
+			<div class="card m-auto text-center">
+				<div>
+					<h3>To predict the major based on:  </h3>
+					<label class="my-3">Age</label>
+					<input type="number" id="age" placeholder="Enter your age"></input>
+					<br>
+					<label class="my-2">Sex</label>
+					<select id="sex" class="btn-primary">
+						<option value="0">Male</option>
+						<option value="1">Female</option>
+					</select>
+					<br>
+					<label class="my-2">Strand</label>
+					<select id="strand" class="btn-warning">
+						<option value="0">ICT</option>
+						<option value="1">STEM</option>
+						<option value="2">MARINE ENGINEERING</option>
+						<option value="3">CSS</option>
+					</select>
+					<br>
+					<label class="my-2">Prefer Skill</label>
+					<select id="skill" class="btn btn-success">
+						<option value="0">Data Analysis, Business Intelligence or Data driven decision making</option>
+						<option value="1">Network administration, Cybersecurity, or Network Architecture</option>
+					</select>
+					<br>
+					<button id="btn" class="btn btn-danger my-2">Predict</button>
+					<h3>I suggest that you take</h3><p id="apicontent" class="text-red"></p><h3>in your college</h3>
+				
+						
+					
+				</div>	
+		</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(() => {
+		$("#btn").click(() => {
+			let age = $("#age")[0].value;
+			let sex = $("#sex")[0].value;
+			let strand = $("#strand")[0].value;
+			let skill = $("#skill")[0].value;
+			
+			if( age == "" || sex == "" || strand == "" || skill == ""){
+				alert('Please input incomplete fields');
+			}
+			else{
+				$("#apicontent")[0].innerHTML = "Loading... Please Wait...";
+				$.ajax({
+				  url: "http://127.0.0.1:5500/ACTIVITY_API/predict",
+				  method: 'POST',
+				  data : { age: age,
+				  				 sex: sex, 
+				  				 strand: strand, 
+				  				 skill: skill},
+				  headers: {
+				  	"Access-Control-Allow-Origin" : '*'
+				  }
+				}).done(res => {
+				  if (parseInt(res.prediction) == 1) {
+				  		res = 'Networking';
+				  } 
+				  else if (parseInt(res.prediction) == 0) {
+				  		res = 'Business Analytics';
+				  }
+				  else{
+				  	res = 'Unknown Major';
+				  }
+				  $("#apicontent")[0].innerHTML = res;
+					});
+
+			}
+		});
+	});
+</script>
+</html>

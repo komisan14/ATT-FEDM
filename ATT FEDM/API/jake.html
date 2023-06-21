@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict your future course!</title>
+
+
+    <style>
+       #center_container{
+        margin: 0 auto;
+        width: 50%;
+        margin-top: 20px;
+        text-align: center;
+       }
+
+    </style>
+
+</head>
+<body>
+
+    <div id = "center_container">    
+
+
+    <p style="display: inline;">Age : </p>
+    <input type="text" placeholder = "Your Age" id="age">
+    <br><br>
+
+
+    <div id = "sex_radio"> Sex : 
+        <input type="radio" id="sex1" name="sex" value="male" >
+        <label for="age1" >Male</label>
+        <input type="radio" id="sex2" name="sex" value="female" >
+        <label for="age2">Female</label><br> 
+    </div>
+    <br>
+    
+
+    <label for="cars">Strand in Senior High School : </label>
+<select  name="strand_shs" id="strand_shs">
+ 
+    <option value="STEM">STEM</option>
+    <option value="ABM">ABM</option>
+    <option value="HUMMS">HUMMS</option>
+    <option value="ICT">ICT</option>
+    <option value="Cookery">Cookery</option>
+    <option value="Automotive">Automotive</option>
+
+</select>
+
+<p>Preferred Skill : </p>
+<select  name="preferred_skill" id="preferred_skill">
+ 
+    <option value="Data Analysis, Business Intelligence or Data driven decision making">Data Analysis, Business Intelligence or Data driven decision making</option>
+    <option value="Network administration, Cybersecurity, or Network Architecture">Network administration, Cybersecurity, or Network Architecture</option>
+</select>
+
+<br>
+<br>
+<input type="button" value="Predict" id = "predict_btn">
+    <h2>Your Predicted Major in College is: </h2>
+    <h2><bold id = 'prediction'>__________________________</bold></h2>
+    
+    
+</div>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#predict_btn").click(() => {
+            let age = $("#age")[0].value;
+            let sex = $('input[name="sex"]:checked').val();
+            let strand_shs = $('#strand_shs :selected').text();
+            let preferred_skill =  $('#preferred_skill :selected').text();
+            if(age == "" || sex == "" || strand_shs == "" || preferred_skill == ""){
+                alert('Input incomplete');
+            }
+
+            else{
+                $("#prediction")[0].innerHTML = "Loding... Please wait...";
+                $.ajax({
+                  url: "http://127.0.0.1:105/api/predict",
+                  method: 'POST',
+                  data : {
+                    age: age,
+                    sex : sex,
+                    strand_shs : strand_shs,
+                    preferred_skill : preferred_skill
+                    
+                  },
+                  crossDomain: true,
+                  headers: {
+                    "Access-Control-Allow-Origin" : '*'
+                  }
+                }).done(res => {
+                    if(parseInt(res.prediction) == 1) {
+                      res = 'Business Analytics'
+                    }
+                    else if(parseInt(res.prediction) == 0){
+                      res = 'Networking';
+                    }
+                    else{
+                      res = 'unknown major'
+                    }
+                    $("#apicontent")[0].innerHTML = res;
+                  });
+            }
+        });
+        
+    });
+</script>
+</body>
+</html>

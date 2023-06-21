@@ -1,0 +1,46 @@
+filter methods = nagtatangal ng features 
+wrapper methods =
+embedded =  
+
+to reduce the number of features 
+mas madali naiintindihan ni machine 
+mas mabilis 
+
+purpose
+1. visualization 
+2. Modelling 
+
+feature selection - reduce the number of features, manually nagbabawas. 
+feature extraction - nagrreduce but not disregarding the original features. 
+  - improved accuracy 
+  - no overfitting 
+  - speed uo in training 
+  - imroved data visualization
+  - increase in explainability of our model
+
+PCA (Principal Components Analysis) - Dimensionality reduction 
+- kinukuha correlation between each components
+- Mostly used in classification regression
+
+ICA (Independent Component Analysis) - 
+- kinukuha yung independent na dapat ay walang similarity
+
+LDA (Linear Discriminant Analysis) - check the distance between classes
+
+LLE (Locally Linear EMbedding)- Similar kay PCA but non-linear.
+
+t-SNE (t-distributed Stochastic Neighbor EMbedding)- typically used to visualize high dimensional datasets 
+
+kelan ginagawa : before or after modelling. 
+feature engineering : we are creating a new feature based on the old feature. 
+
+model na magppredict kung BA or NT ang kkuhanin 
+features - grades, demographics, track/strand nung k-12
+may 6 - pasahan
+
+KNIME
+
+kapag continous at hindi categorical ang target variable, regression analysis ang gagamitin. 
+
+ano-ano yung mga variable na gagamitin niyo in order to predict the construction days? 
+
