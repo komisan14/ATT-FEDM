@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	 <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="number"], select {
+        	margin-left: 500px;
+            display: block;
+            width: 50%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        button {
+        	margin-left: 500px;
+            background-color: skyblue;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 50%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #apicontent {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 24px;
+        }
+    </style>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+	<div>
+		<h1>Weight Prediction</h1>
+		<input type="number" placeholder="Enter your age" id="age">
+		<input type="number" placeholder="Enter your height" id="height">
+		<select id="sex">
+			<option value="0">Male</option>
+			<option value="1">Female</option>
+		</select>
+		<button id="btn">Predict</button>
+		<h1>Your weight based on model is</h1>
+		<div id="apicontent" style="color: blue;"> </div>
+	</div>	
+</body>
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(() => {
+		$("#btn").click(() => {
+			let age = $("#age")[0].value;
+			let sex = $("#sex")[0].value;
+			let height = $("#height")[0].value;
+			if(age == "" || sex == "" || height == ""){
+				alert('Input incomplete');
+			}
+
+			else{
+				$("#apicontent")[0].innerHTML = "Loding... Please wait...";
+				$.ajax({
+				  url: "http://127.0.0.1:105/api/predict",
+				  method: 'POST',
+				  data : {
+				  	age: age,
+				  	sex : sex,
+				  	height : height
+				  },
+				  crossDomain: true,
+				  headers: {
+				  	"Access-Control-Allow-Origin" : '*'
+				  }
+				}).done(res => {
+					let response = res.prediction.toFixed(2);
+				  	$("#apicontent")[0].innerHTML = response + '&nbsp;kg';
+				});
+			}
+		});
+		
+	});
+</script>
+</html>

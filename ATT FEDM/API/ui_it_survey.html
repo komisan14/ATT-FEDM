@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+    crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script> -->
+    <title>PREDICTION | API</title>
+</head>
+<body>
+    <div class="container my-5 px-5">
+          <form class="form-label">
+            <div class="form-floating mb-4">
+              <input type="number" id="Age" class="form-control"/>
+              <label class="form-label a" for="form6Example1">Age</label>
+            </div>
+          
+            <div class="form-floating mb-4 btn bg-primary">
+              <select name="" id="Sex" class="form-select bg-primary text-white">
+                <!-- <option value="" selected disabled>Choose sex</option> -->
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <label class="form-label b" for="">Sex</label>
+            </div>
+          
+            <div class="form-floating mb-4 btn bg-warning">
+              <select name="" id="strand" class="form-select bg-warning text-white">
+                <!-- <option value="" selected disabled>Choose strand in SHS</option> -->
+                <option value="STEM">STEM</option>
+                <option value="ICT">ICT</option>
+                <option value="ICT (Animation / Programming)">ICT (Animation / Programming)</option>
+                <option value="CSS">CSS</option>
+                <option value="MARINE ENGINEERING">MARINE ENGINEERING	</option>
+              </select>
+              <label class="form-label c" for="">Strand in SHS</label>
+            </div>
+          
+            <div class="form-floating mb-4 btn btn-success">
+              <select name="" id="preferred_skill" class="form-select bg-success text-white">
+                <!-- <option value="" selected disabled>Choose preferred skill</option> -->
+                <option value="Data Analysis, Business Intelligence or Data driven decision making">Data Analysis, Business Intelligence or Data driven decision making</option>
+                <option value="Network administration, Cybersecurity, or Network Architecture">Network administration, Cybersecurity, or Network Architecture</option>
+              </select>
+              <label class="form-label" for="">Preferred Skill</label>
+            </div>
+          
+            <button  id="button" type="submit" class="btn btn-danger btn-block mb-4 my-4">PREDICT</button>
+          </form>
+          <h1>your MAJOR will be: </h1>
+          <div id="apicontent"></div>
+    </div>
+    
+    <script type="text/javascript" src="jquery.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(() => {
+          $("#button").click(() => {
+            let age = $("#age")[0].value;
+            let sex = $("#sex")[0].value;
+            let strand = $("#strand")[0].value;
+            let skill = $("#preferred_skill")[0].value;
+            
+            if( age == "" || sex == "" || strand == "" || skill == ""){
+              alert('Please input incomplete fields');
+            }
+            else{
+              $("#apicontent")[0].innerHTML = "Loading... Please Wait...";
+              $.ajax({
+                url:"http://127.0.0.1:5500/api/prediction",
+                method: 'post',
+                data : { age: age,
+                        sex: sex, 
+                        strand: strand, 
+                        skill: skill},
+                headers: {
+                  "Access-Control-Allow-Origin" : '*'
+                }
+              }).done(res => {
+                if (parseInt(res.prediction) == 1) {
+                    res = 'Networking';
+                } 
+                else if (parseInt(res.prediction) == 0) {
+                    res = 'Business Analytics';
+                }
+                else{
+                  res = 'Unknown Major';
+                }
+                  $("#apicontent")[0].innerHTML = res;
+                });
+
+            }
+          });
+        });
+      </script>
+</body>
+</html>

@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2" xmlns:pmml="http://www.dmg.org/PMML-4_0">
+  <Header copyright="win10">
+    <Application name="KNIME" version="4.7.2"/>
+  </Header>
+  <DataDictionary numberOfFields="23">
+    <DataField name="class" optype="categorical" dataType="string">
+      <Value value="p"/>
+      <Value value="e"/>
+    </DataField>
+    <DataField name="cap-shape" optype="categorical" dataType="string">
+      <Value value="x"/>
+      <Value value="b"/>
+      <Value value="s"/>
+      <Value value="f"/>
+      <Value value="k"/>
+      <Value value="c"/>
+    </DataField>
+    <DataField name="cap-surface" optype="categorical" dataType="string">
+      <Value value="s"/>
+      <Value value="y"/>
+      <Value value="f"/>
+      <Value value="g"/>
+    </DataField>
+    <DataField name="cap-color" optype="categorical" dataType="string">
+      <Value value="n"/>
+      <Value value="y"/>
+      <Value value="w"/>
+      <Value value="g"/>
+      <Value value="e"/>
+      <Value value="p"/>
+      <Value value="b"/>
+      <Value value="u"/>
+      <Value value="c"/>
+      <Value value="r"/>
+    </DataField>
+    <DataField name="bruises" optype="categorical" dataType="string">
+      <Value value="t"/>
+      <Value value="f"/>
+    </DataField>
+    <DataField name="odor" optype="categorical" dataType="string">
+      <Value value="p"/>
+      <Value value="a"/>
+      <Value value="l"/>
+      <Value value="n"/>
+      <Value value="f"/>
+      <Value value="c"/>
+      <Value value="y"/>
+      <Value value="s"/>
+      <Value value="m"/>
+    </DataField>
+    <DataField name="gill-attachment" optype="categorical" dataType="string">
+      <Value value="f"/>
+      <Value value="a"/>
+    </DataField>
+    <DataField name="gill-spacing" optype="categorical" dataType="string">
+      <Value value="c"/>
+      <Value value="w"/>
+    </DataField>
+    <DataField name="gill-size" optype="categorical" dataType="string">
+      <Value value="n"/>
+      <Value value="b"/>
+    </DataField>
+    <DataField name="gill-color" optype="categorical" dataType="string">
+      <Value value="k"/>
+      <Value value="n"/>
+      <Value value="g"/>
+      <Value value="p"/>
+      <Value value="w"/>
+      <Value value="h"/>
+      <Value value="u"/>
+      <Value value="e"/>
+      <Value value="b"/>
+      <Value value="r"/>
+      <Value value="y"/>
+      <Value value="o"/>
+    </DataField>
+    <DataField name="stalk-shape" optype="categorical" dataType="string">
+      <Value value="e"/>
+      <Value value="t"/>
+    </DataField>
+    <DataField name="stalk-root" optype="categorical" dataType="string">
+      <Value value="e"/>
+      <Value value="c"/>
+      <Value value="b"/>
+      <Value value="r"/>
+      <Value value="?"/>
+    </DataField>
+    <DataField name="stalk-surface-above-ring" optype="categorical" dataType="string">
+      <Value value="s"/>
+      <Value value="f"/>
+      <Value value="k"/>
+      <Value value="y"/>
+    </DataField>
+    <DataField name="stalk-surface-below-ring" optype="categorical" dataType="string">
+      <Value value="s"/>
+      <Value value="f"/>
+      <Value value="y"/>
+      <Value value="k"/>
+    </DataField>
+    <DataField name="stalk-color-above-ring" optype="categorical" dataType="string">
+      <Value value="w"/>
+      <Value value="g"/>
+      <Value value="p"/>
+      <Value value="n"/>
+      <Value value="b"/>
+      <Value value="e"/>
+      <Value value="o"/>
+      <Value value="c"/>
+      <Value value="y"/>
+    </DataField>
+    <DataField name="stalk-color-below-ring" optype="categorical" dataType="string">
+      <Value value="w"/>
+      <Value value="p"/>
+      <Value value="g"/>
+      <Value value="b"/>
+      <Value value="n"/>
+      <Value value="e"/>
+      <Value value="y"/>
+      <Value value="o"/>
+      <Value value="c"/>
+    </DataField>
+    <DataField name="veil-type" optype="categorical" dataType="string">
+      <Value value="p"/>
+    </DataField>
+    <DataField name="veil-color" optype="categorical" dataType="string">
+      <Value value="w"/>
+      <Value value="n"/>
+      <Value value="o"/>
+      <Value value="y"/>
+    </DataField>
+    <DataField name="ring-number" optype="categorical" dataType="string">
+      <Value value="o"/>
+      <Value value="t"/>
+      <Value value="n"/>
+    </DataField>
+    <DataField name="ring-type" optype="categorical" dataType="string">
+      <Value value="p"/>
+      <Value value="e"/>
+      <Value value="l"/>
+      <Value value="f"/>
+      <Value value="n"/>
+    </DataField>
+    <DataField name="spore-print-color" optype="categorical" dataType="string">
+      <Value value="k"/>
+      <Value value="n"/>
+      <Value value="u"/>
+      <Value value="h"/>
+      <Value value="w"/>
+      <Value value="r"/>
+      <Value value="o"/>
+      <Value value="y"/>
+      <Value value="b"/>
+    </DataField>
+    <DataField name="population" optype="categorical" dataType="string">
+      <Value value="s"/>
+      <Value value="n"/>
+      <Value value="a"/>
+      <Value value="v"/>
+      <Value value="y"/>
+      <Value value="c"/>
+    </DataField>
+    <DataField name="habitat" optype="categorical" dataType="string">
+      <Value value="u"/>
+      <Value value="g"/>
+      <Value value="m"/>
+      <Value value="d"/>
+      <Value value="p"/>
+      <Value value="w"/>
+      <Value value="l"/>
+    </DataField>
+  </DataDictionary>
+  <TransformationDictionary>
+    <DerivedField name="cap-shape (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="cap-shape" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>x</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>b</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>s</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>f</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>k</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>c</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="cap-surface (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="cap-surface" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>s</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>f</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>g</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="cap-color (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="cap-color" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>w</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>g</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>e</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>p</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+          <row>
+            <pmml:in>b</pmml:in>
+            <pmml:out>6</pmml:out>
+          </row>
+          <row>
+            <pmml:in>u</pmml:in>
+            <pmml:out>7</pmml:out>
+          </row>
+          <row>
+            <pmml:in>c</pmml:in>
+            <pmml:out>8</pmml:out>
+          </row>
+          <row>
+            <pmml:in>r</pmml:in>
+            <pmml:out>9</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="bruises (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="bruises" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>t</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>f</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="odor (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="odor" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>p</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>a</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>l</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>f</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>c</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>6</pmml:out>
+          </row>
+          <row>
+            <pmml:in>s</pmml:in>
+            <pmml:out>7</pmml:out>
+          </row>
+          <row>
+            <pmml:in>m</pmml:in>
+            <pmml:out>8</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="gill-attachment (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="gill-attachment" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>f</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>a</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="gill-spacing (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="gill-spacing" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>c</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>w</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="gill-size (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="gill-size" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>b</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="gill-color (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="gill-color" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>k</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>g</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>p</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>w</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>h</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+          <row>
+            <pmml:in>u</pmml:in>
+            <pmml:out>6</pmml:out>
+          </row>
+          <row>
+            <pmml:in>e</pmml:in>
+            <pmml:out>7</pmml:out>
+          </row>
+          <row>
+            <pmml:in>b</pmml:in>
+            <pmml:out>8</pmml:out>
+          </row>
+          <row>
+            <pmml:in>r</pmml:in>
+            <pmml:out>9</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>10</pmml:out>
+          </row>
+          <row>
+            <pmml:in>o</pmml:in>
+            <pmml:out>11</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="stalk-shape (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="stalk-shape" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>e</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>t</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="stalk-root (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="stalk-root" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>e</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>c</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>b</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>r</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>?</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="stalk-surface-above-ring (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="stalk-surface-above-ring" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>s</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>f</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>k</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="stalk-surface-below-ring (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="stalk-surface-below-ring" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>s</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>f</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>k</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="stalk-color-above-ring (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="stalk-color-above-ring" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>w</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>g</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>p</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>b</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>e</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+          <row>
+            <pmml:in>o</pmml:in>
+            <pmml:out>6</pmml:out>
+          </row>
+          <row>
+            <pmml:in>c</pmml:in>
+            <pmml:out>7</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>8</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="stalk-color-below-ring (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="stalk-color-below-ring" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>w</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>p</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>g</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>b</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>e</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>6</pmml:out>
+          </row>
+          <row>
+            <pmml:in>o</pmml:in>
+            <pmml:out>7</pmml:out>
+          </row>
+          <row>
+            <pmml:in>c</pmml:in>
+            <pmml:out>8</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="veil-type (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="veil-type" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>p</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="veil-color (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="veil-color" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>w</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>o</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="ring-number (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="ring-number" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>o</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>t</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="ring-type (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="ring-type" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>p</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>e</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>l</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>f</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="spore-print-color (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="spore-print-color" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>k</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>u</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>h</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>w</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>r</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+          <row>
+            <pmml:in>o</pmml:in>
+            <pmml:out>6</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>7</pmml:out>
+          </row>
+          <row>
+            <pmml:in>b</pmml:in>
+            <pmml:out>8</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="population (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="population" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>s</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>n</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>a</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>v</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>y</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>c</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+    <DerivedField name="habitat (to number)" optype="continuous" dataType="integer">
+      <Extension name="summary" extender="KNIME" value="Generated by KNIME - Category2Number node"/>
+      <MapValues outputColumn="out" dataType="integer">
+        <FieldColumnPair field="habitat" column="in"/>
+        <InlineTable>
+          <row>
+            <pmml:in>u</pmml:in>
+            <pmml:out>0</pmml:out>
+          </row>
+          <row>
+            <pmml:in>g</pmml:in>
+            <pmml:out>1</pmml:out>
+          </row>
+          <row>
+            <pmml:in>m</pmml:in>
+            <pmml:out>2</pmml:out>
+          </row>
+          <row>
+            <pmml:in>d</pmml:in>
+            <pmml:out>3</pmml:out>
+          </row>
+          <row>
+            <pmml:in>p</pmml:in>
+            <pmml:out>4</pmml:out>
+          </row>
+          <row>
+            <pmml:in>w</pmml:in>
+            <pmml:out>5</pmml:out>
+          </row>
+          <row>
+            <pmml:in>l</pmml:in>
+            <pmml:out>6</pmml:out>
+          </row>
+        </InlineTable>
+      </MapValues>
+    </DerivedField>
+  </TransformationDictionary>
+</PMML>
